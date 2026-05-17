@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Layout satu item card film dalam RecyclerView grid.
+    CardView memberikan tampilan kartu dengan sudut membulat dan elevation.
+    Rasio poster mendekati standar poster film: 2:3 (lebar:tinggi).
+-->
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@color/bg_card"
+    android:foreground="?android:attr/selectableItemBackground">
+    <!-- foreground selectableItemBackground: efek ripple saat item diklik -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- ── POSTER FILM ── -->
+        <!-- AspectRatio tidak tersedia di XML standar, gunakan ConstraintLayout -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- ImageView untuk poster dengan rasio 2:3 -->
+            <ImageView
+                android:id="@+id/iv_poster"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="Poster film"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintDimensionRatio="2:3" />
+            <!-- constraintDimensionRatio="2:3": lebar:tinggi = 2:3 -->
+            <!-- Ini memastikan semua poster punya tinggi yang konsisten -->
+
+            <!-- Badge genre di pojok kiri atas poster -->
+            <TextView
+                android:id="@+id/tv_genre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:background="@drawable/bg_badge_genre"
+                android:textColor="@color/gold_accent"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Sci-Fi"
+                xmlns:tools="http://schemas.android.com/tools" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- ── INFO FILM DI BAWAH POSTER ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <!-- Judul film: maksimal 2 baris dengan ellipsis -->
+            <TextView
+                android:id="@+id/tv_judul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:lineSpacingMultiplier="1.1"
+                tools:text="Interstellar"
+                xmlns:tools="http://schemas.android.com/tools" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
